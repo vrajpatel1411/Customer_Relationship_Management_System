@@ -1,0 +1,31 @@
+{
+  "name": "crm-api",
+  "version": "1.0.0",
+  "description": "Crm web appplication",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Excel-Guru/CRM-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Excel-Guru/CRM-API/issues"
+  },
+  "homepage": "https://github.com/Excel-Guru/CRM-API#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mssql": "^8.0.2",
+    "mysql2": "^3.3.0",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.17.0"
+  }
+}

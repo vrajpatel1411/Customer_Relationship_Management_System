@@ -1,0 +1,82 @@
+const express = require("express");
+const app = express(); 
+const bodyparser=require('body-parser');
+const sequelize=require("./sequelize")
+const cors=require('cors');
+const Sequelize=require('sequelize');
+// const session=require('express-session')
+
+
+var port=process.env.PORT || 8080;
+
+
+// This section will load all routes require and other controllers.
+const clientroute=require('./Router/Client.js');
+const leadroute=require('./Router/Lead.js');
+const followuproute=require('./Router/FollowUp.js');
+const mobile=require('./Router/Mobile.js');
+const email=require('./Router/Email.js')
+const alumni=require('./Router/Alumni.js')
+const product=require('./Router/Product.js')
+const interest=require('./Router/Interest.js')
+const batch=require('./Router/Batch.js')
+const userroute=require('./Router/User.js');
+
+const isAuth=require("./Controller/isAuth")
+const isUser=require("./Controller/isUser")
+const {Generatetoken, Verifytoken}=require('./config');
+const updatepassword=require("./Controller/updatepassword");
+
+//----------------------------------------------------------------
+
+//This section consist of all middleware used by this app
+app.use(bodyparser.json());
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+// app.use(session({
+//         secret:"hello world",
+//         resave:false,
+//         saveUninitialized:false,
+//         cookie:{
+//             maxAge:3600000
+//         }
+//         })
+// );
+//--------------------------------
+
+//All request 
+app.get('/',(req,res)=>{
+    res.send("Running");
+})
+
+app.use("/client",clientroute); 
+app.use("/lead",leadroute);
+app.use("/followUp",followuproute);
+app.use("/mobile",mobile);
+app.use("/email",email);
+app.use("/alumni",alumni)
+app.use("/product",product);
+app.use("/interest",interest)
+app.use("/user",userroute);
+app.use("/batch",batch);
+
+app.post("/login",isAuth)
+app.post("/forgetpassword",isUser)
+app.post("/session",(req,res)=>{
+    const username=req.body.username;
+    const userid=req.body.username;
+    const jwt=req.body.token;
+    if(Verifytoken(jwt,username))
+    {
+        res.status(200).json({auth:true});
+    }
+    else{
+        res.status(400).json({auth:false});
+    }
+})
+app.post("/forgetpassword/password",updatepassword)
+//-----------------------------
+app.listen(3000,()=>{
+    console.log("Running")
+});

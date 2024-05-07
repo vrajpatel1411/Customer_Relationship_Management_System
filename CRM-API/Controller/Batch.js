@@ -13,7 +13,6 @@ getBatchByProducts = (req, res) => {
     .then((data) => {
       var Batcharray = [];
       temp = data.map((a) => Batcharray.push(a.dataValues));
-      console.log(Batcharray);
       if (Batcharray.length > 0) {
         res.status(200).json({ status: true, data: Batcharray });
       } else {

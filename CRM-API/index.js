@@ -24,7 +24,7 @@ const isAuth = require("./Controller/isAuth");
 const isUser = require("./Controller/isUser");
 const { Verifytoken } = require("./config");
 const updatepassword = require("./Controller/updatepassword");
-const jwtVerify = require("./Middleware/jwtVerification.js");
+// const jwtVerify = require("./Middleware/jwtVerification.js");
 
 //----------------------------------------------------------------
 

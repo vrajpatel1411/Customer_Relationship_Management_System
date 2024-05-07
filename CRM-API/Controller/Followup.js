@@ -46,7 +46,6 @@ const addFollowUp = (req, res) => {
       res.status(200).json({ message: true, data: "DATA ADDED" });
     })
     .catch((err) => {
-      // console.log(err)
       res.status(200).json({ message: true, data: "Data not added" });
     });
 };

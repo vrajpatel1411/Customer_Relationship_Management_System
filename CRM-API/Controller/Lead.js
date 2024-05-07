@@ -14,7 +14,6 @@ getLeadWithClientID = (req, res) => {
       where: { UserID: req.query.userid, Status: req.query.status },
     })
     .then((data) => {
-      console.log(data);
       if (data.length > 0) {
         data.forEach((element) => {
           element.LeadDate = require("moment")(element.LeadDate).format(
@@ -189,7 +188,7 @@ assignLead = (req, res) => {
       const random = Math.floor(Math.random() * Leadarray.length);
       if (Leadarray.length > 0) {
         let leadid = Leadarray[random].LeadID;
-        console.log(leadid);
+
         lead
           .update({ UserID: req.params.id }, { where: { LeadID: leadid } })
           .then(() => {
